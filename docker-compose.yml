@@ -1,8 +1,0 @@
-version: "2"
-services:
-    laravel:
-        image: bernhardesperester/docker-laravel:latest
-        ports:
-            - "80:80"
-        volumes:
-            - ./:/var/www/laravel/
