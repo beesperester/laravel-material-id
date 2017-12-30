@@ -1,11 +1,48 @@
-<div class="material-id">
+<?php
 
-    <span class="material-id__name">{{$name}}:</span>
+$rgb = $material->color->getRgb();
+$r = $rgb->r;
+$g = $rgb->g;
+$b = $rgb->b;
 
-    <span class="material-id__hex" style="background-color:{{$hex}};padding:.25rem .5rem;border-radius:.5rem;">{{$hex}}</span>
+$hsv = $material->color->getHsv(false, env('PRECISION', 2));
+$h = $hsv->h;
+$s = $hsv->s;
+$v = $hsv->v;
 
-    <p class="material-id__rgb">r: {{$rgb[0]}}, g: {{$rgb[1]}}, b: {{$rgb[2]}}</p>
+$hsvn = $material->color->getHsv(true, env('PRECISION', 2));
+$hn = $hsvn->h;
+$sn = $hsvn->s;
+$vn = $hsvn->v;
 
-    <p class="material-id__hsv">h: {{$hsv[0]}}, s: {{$hsv[1]}}, v: {{$hsv[2]}}</p>
+?>
 
-</div>
+<tr>
+
+    <th scope="row">{{$material->name}}</th>
+
+    <td><span class="material-id__preview" style="background-color:{{$material->color->getHex()}};padding:.25rem .5rem;border-radius:.5rem;"></span></td>
+
+    <td>{{$material->color->getHex()}}</td>
+
+    <td>{{$r}}, {{$g}}, {{$b}}</td>
+
+    <td>{{$h}}, {{$s}}, {{$v}}</td>
+
+    <td>{{$hn}}, {{$sn}}, {{$vn}}</td>
+
+    <td>
+
+        <form action="/material/{{$material->id}}" method="post">
+
+            {{ csrf_field() }}
+
+            {{ method_field('DELETE') }}
+
+            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+
+        </form>
+    
+    </td>
+
+</tr>

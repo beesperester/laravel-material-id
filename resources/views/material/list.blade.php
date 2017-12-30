@@ -1,9 +1,35 @@
-@foreach($materials as $material)
+<table class="table  table-striped">
 
-    <li>
+    <thead>
 
-        @include('material.show', $material)
+        <tr>
 
-    </li>
+            <th scope="col">Material</th>
 
-@endforeach
+            <th scope="col"></th>
+
+            <th scope="col">HEX</th>
+
+            <th scope="col">RGB</th>
+
+            <th scope="col">HSV (360°)</th>
+
+            <th scope="col">HSV (normalized)</th>
+
+            <th scope="col"></th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach($materials->sortBy('name') as $material)
+
+            @include('material.show', ['material' => $material])
+
+        @endforeach
+
+    </tbody>
+
+</table>
