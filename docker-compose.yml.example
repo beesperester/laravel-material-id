@@ -4,20 +4,5 @@ services:
         image: bernhardesperester/docker-laravel:latest
         ports:
             - "80:80"
-        depends_on:
-            - database
-        links:
-            - database:mysql-server
         volumes:
             - ./:/var/www/laravel/
-    database:
-        image: mysql:latest
-        ports:
-            - "3306:3306"
-        environment:
-            - MYSQL_ROOT_PASSWORD=root_password
-            - MYSQL_DATABASE=laravel
-            - MYSQL_USER=laravel
-            - MYSQL_PASSWORD=password
-        volumes:
-            - ./.data/db:/var/lib/mysql
