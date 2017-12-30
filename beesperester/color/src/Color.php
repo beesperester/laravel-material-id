@@ -3,8 +3,11 @@
 namespace Beesperester\Color;
 
 use stdClass;
+// Illuminate
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 
-class Color
+class Color implements Arrayable, Jsonable
 {
     private $r;
     private $g;
@@ -55,5 +58,32 @@ class Color
         $hsv->v = round($v, $precision);
 
         return $hsv;
+    }
+
+    /**
+     * Convert the model instance to JSON.
+     *
+     * @param int $options
+     *
+     * @return string
+     */
+    public function toJson($options = 0)
+    {
+        return json_encode($this->toArray(), $options);
+    }
+
+    /**
+     * Convert the model instance to an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'rgb' => $this->getRgb(),
+            'hex' => $this->getHex(),
+            'hsv' => $this->getHsv(false, env('PRECISION', 2)),
+            'hsvn' => $this->getHsv(true, env('PRECISION', 2)),
+        ];
     }
 }

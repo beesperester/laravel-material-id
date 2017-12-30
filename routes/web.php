@@ -15,28 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/material', 'MaterialController@index');
-
-function hash_material(string $name, string $salt = '')
-{
-    $hash = sha1($name.$salt);
-
-    $hex = '#'.substr($hash, 0, 6);
-
-    list($r, $g, $b) = sscanf($hex, '#%02x%02x%02x');
-
-    $rgb = [$r, $g, $b];
-
-    $hsv = array_map('round', rgbToHsv($r, $g, $b));
-
-    return [
-        'name' => $name,
-        'hex' => $hex,
-        'rgb' => $rgb,
-        'hsv' => $hsv,
-    ];
-}
-
-// Route::get('/material/{material}', 'MaterialController@show');
-
-Route::resource('/material', 'MaterialController');
+Route::get('/material/{any}', 'MaterialController@show')->where('any', '([a-zA-Z0-9\.\/\+\-]*)');

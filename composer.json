@@ -23,7 +23,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Beesperester\\Color\\": "beesperester/color/src/"
+            "Beesperester\\Color\\": "beesperester/color/src/",
+            "Beesperester\\Material\\": "beesperester/material/src/"
         },
         "files": [
             "app/Helpers/color_helpers.php"

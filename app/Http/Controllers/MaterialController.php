@@ -3,38 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// Models
-use App\Material;
+// Beesperester
+use Beesperester\Material\Material;
 
 class MaterialController extends Controller
 {
-    public function index(Request $request)
+    public function show(Request $request, string $name)
     {
-        $materials = Material::all();
+        $material = Material::fromName($name, env('SALT', ''));
 
-        return view('material.index', ['materials' => $materials]);
+        return view('material.show', ['material' => $material]);
     }
 
-    public function show(Request $request, Material $material)
+    public function showApi(Request $request, string $name)
     {
-        return $material;
-    }
+        $material = Material::fromName($name, env('SALT', ''));
 
-    public function store(Request $request)
-    {
-        $validated_data = $request->validate([
-            'name' => 'required|unique:materials',
-        ]);
+        $preview = [
+            'preview' => url('material/'.$name),
+        ];
 
-        $material = Material::create($validated_data);
-
-        return redirect()->back();
-    }
-
-    public function destroy(Request $request, Material $material)
-    {
-        $material->delete();
-
-        return redirect()->back();
+        return array_merge($material->toArray(), $preview);
     }
 }
