@@ -1,4 +1,4 @@
-<header class="bg-light p-5">
+<header class="bg-light pt-5 pb-5">
 
     <div class="container mb-4 text-center">
 
@@ -8,18 +8,6 @@
 
     </div>
 
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col">
-
-                @include('_form')
-
-            </div>
-
-        </div>
-
-    </div>
+    @include('_form')
 
 </header>

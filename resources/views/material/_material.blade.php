@@ -33,7 +33,7 @@ $vn = $hsvn->v;
 
         </div>
 
-        <table class="table table-sm borderless small">
+        <table class="table table-sm table-responsive borderless small">
 
             <thead>
 

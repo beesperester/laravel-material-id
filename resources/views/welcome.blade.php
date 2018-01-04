@@ -18,7 +18,7 @@ $json_string = '{"name":"rock","color":{"rgb":{"r":235,"g":35,"b":252},"hex":"#e
 
             <div class="row">
 
-                <div class="col text-justify">
+                <div class="col-md text-justify">
 
                     <p>When working on large scale cg projects or small personal designs it is easy to get lost in the amount of materials and their corresponding color coded ids.</p>
 
@@ -28,7 +28,7 @@ $json_string = '{"name":"rock","color":{"rgb":{"r":235,"g":35,"b":252},"hex":"#e
 
                 </div>
 
-                <div class="col text-justify">                
+                <div class="col-md text-justify">                
 
                     <p>By keeping your material names consistent across your software packages and projects you will get predictable and reproducible results for your color ids.</p>
 
@@ -48,7 +48,7 @@ $json_string = '{"name":"rock","color":{"rgb":{"r":235,"g":35,"b":252},"hex":"#e
 
         <div class="row">
 
-            <div class="col pt-4">
+            <div class="col-md pt-4">
 
                 <h2 class="mb-4">Example material names</h2>
 
@@ -60,7 +60,7 @@ $json_string = '{"name":"rock","color":{"rgb":{"r":235,"g":35,"b":252},"hex":"#e
 
             </div>
 
-            <div class="col bg-secondary pt-4 text-primary">
+            <div class="col-md bg-secondary pt-4 text-primary">
 
                 <h2 class="mb-4">Api Example</h2>
 

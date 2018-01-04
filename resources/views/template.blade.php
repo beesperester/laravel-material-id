@@ -50,14 +50,10 @@
 
             .c-material-id {
                 display: grid;
-                grid-template-columns: 64px auto;
-                grid-template-rows: auto;
-                grid-template-areas:
-                    "preview data"
+                grid-template-columns: 64px fit-content(100%);
             }
 
             .c-material-id__preview {
-                grid-area: preview;
             }
 
             .c-material-id__swatch {
@@ -68,7 +64,6 @@
             }
 
             .c-material-id__data {
-                grid-area: data;
             }
 
             .c-material-id__name {
