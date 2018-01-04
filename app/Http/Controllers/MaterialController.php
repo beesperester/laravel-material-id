@@ -8,6 +8,27 @@ use Beesperester\Material\Material;
 
 class MaterialController extends Controller
 {
+    public function welcome(Request $request)
+    {
+        $material_names = [
+            'metal',
+            'glass',
+            'paper',
+            'wood',
+        ];
+
+        asort($material_names);
+
+        $materials = array_map(
+            function ($name) {
+                return Material::fromName($name, env('SALT', ''));
+            },
+            $material_names
+        );
+
+        return view('welcome', ['materials' => $materials]);
+    }
+
     public function show(Request $request, string $name)
     {
         $material = Material::fromName($name, env('SALT', ''));
@@ -24,5 +45,12 @@ class MaterialController extends Controller
         ];
 
         return array_merge($material->toArray(), $preview);
+    }
+
+    public function store(Request $request)
+    {
+        $name = $request->input('name');
+
+        return redirect()->route('material_show', $name);
     }
 }

@@ -17,27 +17,35 @@ $vn = $hsvn->v;
 
 ?>
 
-<div class="c-material-id">
+<div class="c-material-id mb-4">
 
-    <div class="c-material-id__name">
+    <div class="c-material-id__preview">
 
-        <h1 class="mb-4">{{$material->name}}</h1>
+        <div class="c-material-id__swatch" style="background-color:{{$material->getColor()->getHex()}};"></div>
 
     </div>
 
-    <div class="c-material-id__preview" style="background-color:{{$material->getColor()->getHex()}};padding:.25rem .5rem;border-radius:.5rem;"></div>
-
     <div class="c-material-id__data pl-4">
 
-        <table class="table table-striped table-sm">
+        <div class="c-material-id__name mb-2">
 
-            <thead class="thead-lightt">
+            <strong class="mb-4">{{$material->name}}</strong>
+
+        </div>
+
+        <table class="table table-sm borderless small">
+
+            <thead>
 
                 <tr>
 
-                    <th scope="col" class="col-md-3">Representation</th>
+                    <th>HEX</th>
 
-                    <th scope="col">Value</th>
+                    <th>RGB</th>
+
+                    <th>HSV (360°)</th>
+
+                    <th>HSV (normalized)</th>
 
                 </tr>
 
@@ -46,35 +54,31 @@ $vn = $hsvn->v;
             <tbody>
 
                 <tr>
-            
-                    <th scope="row">HEX</th>
 
-                    <td>{{$material->getColor()->getHex()}}</td>
+                    <td>
                     
-                </tr>
+                        <kbd>{{$material->getColor()->getHex()}}</kbd>
+                        
+                    </td>
 
-                <tr>
-                
-                    <th>RGB</th>
-
-                    <td>{{$r}}, {{$g}}, {{$b}}</td>
+                    <td>
                     
-                </tr>
+                        <kbd>{{$r}}, {{$g}}, {{$b}}</kbd>
+                        
+                    </td>
 
-                <tr>
-
-                    <th>HSV (360°)</th>
-
-                    <td>{{$h}}, {{$s}}, {{$v}}</td>
+                    <td>
                     
-                </tr>
+                        <kbd>{{$h}}, {{$s}}, {{$v}}</kbd>
+                        
+                    </td>
 
-                <tr>
-
-                    <th>HSV (normalized)</th>
-
-                    <td>{{$hn}}, {{$sn}}, {{$vn}}</td>
+                    <td>
                     
+                        <kbd>{{$hn}}, {{$sn}}, {{$vn}}</kbd>
+                        
+                    </td>
+
                 </tr>
 
             </tbody>

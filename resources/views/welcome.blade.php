@@ -1,95 +1,84 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
 
-        <title>Laravel</title>
+$json_string = '{"name":"rock","color":{"rgb":{"r":235,"g":35,"b":252},"hex":"#eb23fc","hsv":{"h":295.3,"s":86.111,"v":98.824},"hsvn":{"h":0.82,"s":0.861,"v":0.988}},"preview":"'.env('APP_URL').'\/material\/rock"}';
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+?>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+@extends('template')
 
-            .full-height {
-                height: 100vh;
-            }
+@section('title', 'Welcome')
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+@section('content')
 
-            .position-ref {
-                position: relative;
-            }
+    <div class="bg-primary">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+        <div class="container pt-4 pb-4">
 
-            .content {
-                text-align: center;
-            }
+            <h2 class="mb-4">What is this all about?</h2>
 
-            .title {
-                font-size: 84px;
-            }
+            <div class="row">
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                <div class="col text-justify">
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+                    <p>When working on large scale cg projects or small personal designs it is easy to get lost in the amount of materials and their corresponding color coded ids.</p>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                    <p>You have your final comp setup, when suddenly you get renderings from a different software package and all your meticulously prepared material masks are useless.</p>
+
+                    <p>With {{env('APP_NAME')}} you can convert your material names into unique and consistent material id colors with ease. Simply enter the name of your material and get the corresponding id color.</p>             
+
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="col text-justify">                
+
+                    <p>By keeping your material names consistent across your software packages and projects you will get predictable and reproducible results for your color ids.</p>
+
+                    <p>When using {{env('APP_NAME')}} it is easy to reuse comp setups because generic materials will always have the same color id.</p>
+
+                    <p>When working with multiple assets in one scene, it is easy to create namespaces for asset specific materials by prefixing the material with a simple string e.g. spaceship-metal.</p>
+
                 </div>
+
             </div>
+
         </div>
-    </body>
-</html>
+
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col pt-4">
+
+                <h2 class="mb-4">Example material names</h2>
+
+                @foreach($materials as $material)
+
+                    @include('material._material', ['material' => $material])
+
+                @endforeach
+
+            </div>
+
+            <div class="col bg-secondary pt-4 text-primary">
+
+                <h2 class="mb-4">Api Example</h2>
+
+                <p>Use api calls to automate the process.</p>
+
+                <p>Make a request to api/material/material/{name} where {name} is your requested material name.</p>
+
+                <pre>$ curl {{env('APP_URL')}}/api/material/rock</pre>
+
+                <p>Example response</p>
+
+                <pre>{{json_encode(json_decode($json_string, True), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)}}
+                </pre>
+
+            </div>
+
+        </div>
+
+    </div>
+
+@endsection

@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MaterialController@welcome');
 
-Route::get('/material/{any}', 'MaterialController@show')->where('any', '([a-zA-Z0-9\.\/\+\-]*)');
+Route::post('/material', 'MaterialController@store');
+Route::get('/material/{any}', ['as' => 'material_show', 'uses' => 'MaterialController@show'])->where('any', '([a-zA-Z0-9\.\/\+\-]*)');
