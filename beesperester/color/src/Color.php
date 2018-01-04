@@ -9,10 +9,34 @@ use Illuminate\Contracts\Support\Jsonable;
 
 class Color implements Arrayable, Jsonable
 {
+    /**
+     * Red value.
+     *
+     * @var int
+     */
     private $r;
+
+    /**
+     * Green value.
+     *
+     * @var int
+     */
     private $g;
+
+    /**
+     * Blue value.
+     *
+     * @var int
+     */
     private $b;
 
+    /**
+     * Construct color object.
+     *
+     * @param int $r
+     * @param int $g
+     * @param int $b
+     */
     public function __construct($r, $g, $b)
     {
         $this->r = $r;
@@ -20,6 +44,13 @@ class Color implements Arrayable, Jsonable
         $this->b = $b;
     }
 
+    /**
+     * Create new color object from hex.
+     *
+     * @param string $hex
+     *
+     * @return Color
+     */
     public static function fromHex($hex)
     {
         list($r, $g, $b) = sscanf($hex, '#%02x%02x%02x');
@@ -27,11 +58,21 @@ class Color implements Arrayable, Jsonable
         return new static($r, $g, $b);
     }
 
+    /**
+     * Get hex representation of color.
+     *
+     * @return string
+     */
     public function getHex()
     {
         return sprintf('#%02x%02x%02x', $this->r, $this->g, $this->b);
     }
 
+    /**
+     * Get rgb representation of color.
+     *
+     * @return stdClass
+     */
     public function getRgb()
     {
         $rgb = new stdClass();
@@ -42,6 +83,14 @@ class Color implements Arrayable, Jsonable
         return $rgb;
     }
 
+    /**
+     * Get hsv representation of color.
+     *
+     * @param bool $normalized
+     * @param int  $precision
+     *
+     * @return stdClass
+     */
     public function getHsv($normalized = false, $precision = 2)
     {
         list($h, $s, $v) = rgbToHsv($this->r, $this->g, $this->b);

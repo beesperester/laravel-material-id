@@ -8,6 +8,13 @@ use Beesperester\Material\Material;
 
 class MaterialController extends Controller
 {
+    /**
+     * Welcome view with example materials.
+     *
+     * @param Illuminate\Http\Request $request
+     *
+     * @return Response
+     */
     public function welcome(Request $request)
     {
         $material_names = [
@@ -29,6 +36,14 @@ class MaterialController extends Controller
         return view('welcome', ['materials' => $materials]);
     }
 
+    /**
+     * Show material id for requested name.
+     *
+     * @param Illuminate\Http\Request $request
+     * @param string                  $name
+     *
+     * @return Response
+     */
     public function show(Request $request, string $name)
     {
         $material = Material::fromName($name, env('SALT', ''));
@@ -36,6 +51,14 @@ class MaterialController extends Controller
         return view('material.show', ['material' => $material]);
     }
 
+    /**
+     * Show material id for requested name.
+     *
+     * @param Illuminate\Http\Request $request
+     * @param string                  $name
+     *
+     * @return json
+     */
     public function showApi(Request $request, string $name)
     {
         $material = Material::fromName($name, env('SALT', ''));
@@ -47,6 +70,13 @@ class MaterialController extends Controller
         return array_merge($material->toArray(), $preview);
     }
 
+    /**
+     * Show material id for requested name.
+     *
+     * @param Illuminate\Http\Request $request
+     *
+     * @return Redirect
+     */
     public function store(Request $request)
     {
         $name = $request->input('name');
