@@ -2,7 +2,7 @@
 
     {{ csrf_field() }}
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center ml-0 mr-0">
 
         <div class="col-6">
 
