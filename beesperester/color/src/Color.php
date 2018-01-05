@@ -71,14 +71,27 @@ class Color implements Arrayable, Jsonable
     /**
      * Get rgb representation of color.
      *
+     * @param bool $normalized
+     * @param int  $precision
+     *
      * @return stdClass
      */
-    public function getRgb()
+    public function getRgb(bool $normalized = false, $precision = 2)
     {
+        $r = $this->r;
+        $g = $this->g;
+        $b = $this->b;
+
+        if ($normalized) {
+            $r = $r / 255;
+            $g = $g / 255;
+            $b = $b / 255;
+        }
+
         $rgb = new stdClass();
-        $rgb->r = $this->r;
-        $rgb->g = $this->g;
-        $rgb->b = $this->b;
+        $rgb->r = round($r, $precision);
+        $rgb->g = round($g, $precision);
+        $rgb->b = round($b, $precision);
 
         return $rgb;
     }
@@ -130,6 +143,7 @@ class Color implements Arrayable, Jsonable
     {
         return [
             'rgb' => $this->getRgb(),
+            'rgbn' => $this->getRgb(true),
             'hex' => $this->getHex(),
             'hsv' => $this->getHsv(false, env('PRECISION', 2)),
             'hsvn' => $this->getHsv(true, env('PRECISION', 2)),

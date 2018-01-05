@@ -12,7 +12,7 @@
 
             <div class="col text-right">
 
-                <p class="text-muted small">Fork me on <a href="https://github.com/beesperester/laravel-material-id" title="laravel-material-id on GitHub">GitHub</a></p>
+                <p class="text-muted small">Fork me on <a href="https://github.com/beesperester/laravel-material-id/fork" title="laravel-material-id on GitHub">GitHub</a></p>
 
             </div>
 

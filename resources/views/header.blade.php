@@ -2,7 +2,7 @@
 
     <div class="mb-4 text-center">
 
-        <h1><a href="{{env('APP_URL')}}">{{env('APP_NAME')}}</a></h1>
+        <h1>{{env('APP_NAME')}}</h1>
 
         <p>Create unique, consistent material ids with ease.</p>
 

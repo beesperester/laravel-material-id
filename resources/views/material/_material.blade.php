@@ -1,9 +1,14 @@
 <?php
 
-$rgb = $material->getColor()->getRgb();
+$rgb = $material->getColor()->getRgb(false, env('PRECISION', 2));
 $r = $rgb->r;
 $g = $rgb->g;
 $b = $rgb->b;
+
+$rgbn = $material->getColor()->getRgb(true, env('PRECISION', 2));
+$rn = $rgbn->r;
+$gn = $rgbn->g;
+$bn = $rgbn->b;
 
 $hsv = $material->getColor()->getHsv(false, env('PRECISION', 2));
 $h = $hsv->h;
@@ -29,49 +34,53 @@ $vn = $hsvn->v;
 
         <div class="c-material-id__name mb-2">
 
-            <strong class="mb-4">{{$material->name}}</strong>
+            <strong class="mb-4">{{$material->name}} (<kbd>{{$material->getColor()->getHex()}}</kbd>)</strong>
 
         </div>
 
         <table class="table table-sm table-responsive borderless small">
 
-            <thead>
-
-                <tr>
-
-                    <th>HEX</th>
-
-                    <th>RGB</th>
-
-                    <th>HSV (360°)</th>
-
-                    <th>HSV (normalized)</th>
-
-                </tr>
-
-            </thead>
-
             <tbody>
 
                 <tr>
 
-                    <td>
+                    <th>RGB</th>
                     
-                        <kbd>{{$material->getColor()->getHex()}}</kbd>
+                    <td>
                         
-                    </td>
-
-                    <td>
-                    
                         <kbd>{{$r}}, {{$g}}, {{$b}}</kbd>
                         
                     </td>
+                
+                </tr>
+
+                <tr>
+
+                    <th>RGB (normalized)</th>
+                    
+                    <td>
+                        
+                        <kbd>{{$rn}}, {{$gn}}, {{$bn}}</kbd>
+                        
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>HSV (360°)</th>
 
                     <td>
                     
                         <kbd>{{$h}}, {{$s}}, {{$v}}</kbd>
                         
                     </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>HSV (normalized)</th>
 
                     <td>
                     

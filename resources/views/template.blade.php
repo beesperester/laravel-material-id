@@ -18,10 +18,16 @@
 
         <style type="text/css">
 
-            pre {
+            .code {
                 background-color: white;
                 border-radius: .25rem;
                 padding: .5rem 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .code pre {
+                margin: 0;
+                white-space: pre-wrap;
             }
 
             h1, h2, h3, h4, h5, h6 {
@@ -44,7 +50,7 @@
                 padding: 0;
             }
 
-            table.borderless tbody td, table.borderless thead th {
+            table.borderless tbody td, table.borderless tbody th, table.borderless thead th {
                 border: none;
             }
 
